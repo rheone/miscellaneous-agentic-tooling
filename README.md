@@ -8,6 +8,7 @@ Miscellaneous Agentic AI tooling [Claude Code](https://docs.anthropic.com/en/doc
 | -------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | **Home Assistant**   | [`homeassistant-awtrix`](skills/homeassistant-awtrix)             | Control AWTRIX 3 on Ulanzi TC001 pixel clocks — notifications, apps, sounds  |
 | **Home Assistant**   | [`homeassistant-pixoo64`](skills/homeassistant-pixoo64)           | Control Divoom Pixoo 64 displays — 8 page types, push notifications          |
+| **Obsidian**         | [`obsidian-templater`](skills/obsidian-templater)                 | Create Obsidian templates with Templater syntax, validation, and testing     |
 | **Obsidian**         | [`obsidian-ics-sync`](skills/obsidian-ics-sync)                   | Sync ICS calendar events into Obsidian daily notes with wikilink matching    |
 
 ## Installation
@@ -24,8 +25,8 @@ Install specific skills:
 # Home Assistant skills
 npx skills add rheone/miscellaneous-agentic-tooling --skill homeassistant-awtrix --skill homeassistant-pixoo64
 
-# Obsidian skill
-npx skills add rheone/miscellaneous-agentic-tooling --skill obsidian-ics-sync
+# Obsidian skills
+npx skills add rheone/miscellaneous-agentic-tooling --skill obsidian-templater --skill obsidian-ics-sync
 ```
 
 Install from a local path:
