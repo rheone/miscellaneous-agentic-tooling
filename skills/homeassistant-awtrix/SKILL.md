@@ -12,8 +12,18 @@ description: >-
 license: Apache-2.0
 user-invocable: true
 metadata:
+  info: >-
+    For Ulanzi TC001 Smart Pixel Clocks
+      See:<https://www.ulanzi.com/products/ulanzi-tc001-smart-pixel-clock>
+    with AWTRIX 3 custom firmware installed - Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+      See: <https://blueforcer.github.io/awtrix3/#/>
+    Suggests usage of MiguelAngelLV's Home Assistant AWTRIX integration - MIT
+      See: <https://github.com/MiguelAngelLV/ha-awtrix> 
+    Suggests usage of 10der's Home Assistant AWTRIX integration - MIT
+      See: <https://github.com/10der/homeassistant-custom_components-awtrix>
+    LaMetric Iconograph can be found at <https://developer.lametric.com/icons>
   author: Robert Engelhardt <rheone@gmail.com>
-  version: 1.0.0
+  version: 1.0.1
 ---
 
 # Home Assistant AWTRIX 3 Skill
@@ -31,7 +41,7 @@ Determine which integration is available — try Tier 1 first, fall back down:
 | Tier | Component | Detection | Calling Pattern |
 |------|-----------|-----------|-----------------|
 | **1** | [MiguelAngelLV/ha-awtrix](https://github.com/MiguelAngelLV/ha-awtrix) | Service `awtrix.notification` exists via `hass.services` | `awtrix.notification` with `device` selector |
-| **2** | [10der/...awtrix_notification](https://github.com/10der/homeassistant-custom_components-awtrix) | Dir `custom_components/awtrix_notification/` exists | `notify.{device}` or `awtrix.{device}_*` |
+| **2** | [homeassistant-custom_components-awtrix](https://github.com/10der/homeassistant-custom_components-awtrix) | Dir `custom_components/awtrix_notification/` exists | `notify.{device}` or `awtrix.{device}_*` |
 | **3** | Raw MQTT | MQTT configured on device | `mqtt.publish` to `{prefix}/notify` |
 
 **If none found:** Suggest HACS install of `MiguelAngelLV/ha-awtrix`.
