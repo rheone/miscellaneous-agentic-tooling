@@ -12,8 +12,15 @@ description: >-
 license: Apache-2.0
 user-invocable: true
 metadata:
+  info: >-
+    For Divoom Pixoo 64 displays
+      See: <https://divoom.com/products/pixoo-64>
+    Requires gickowtf's Home Assistant Divoom Pixoo 64 integration
+      See: <https://github.com/gickowtf/pixoo-homeassistant> - MIT
+    Uses home assistant Divoom Pixoo 64 integration - a 64x64 pixel 
+    LAN-connected display
   author: Robert Engelhardt <rheone@gmail.com>
-  version: 1.0.0
+  version: 1.0.1
 ---
 
 # Home Assistant Divoom Pixoo 64 Skill
