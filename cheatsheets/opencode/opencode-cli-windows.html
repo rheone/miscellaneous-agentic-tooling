@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OpenCode CLI Cheat Sheet — Windows</title>
+<style>
+  :root{
+    --ink:#111;
+    --mid:#555;
+    --line:#bbb;
+    --faint:#eee;
+    --paper:#fff;
+  }
+  *{ box-sizing:border-box; }
+  html,body{
+    margin:0; padding:0;
+    background:#e8e8e8;
+    color:var(--ink);
+    font-family: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+  }
+  .page{
+    max-width: 1000px;
+    margin: 24px auto;
+    background: var(--paper);
+    padding: 40px 48px 56px;
+    box-shadow: 0 0 0 1px var(--line), 0 6px 24px rgba(0,0,0,0.15);
+  }
+  header{
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  h1{
+    font-size: 26px;
+    letter-spacing: 0.02em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .subtitle{
+    color: var(--mid);
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .columns{
+    column-count: 2;
+    column-gap: 40px;
+  }
+  section{
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    margin-bottom: 22px;
+  }
+  h2{
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    margin: 0 0 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--ink);
+  }
+  h2 .num{
+    display:inline-block;
+    width: 18px;
+    color: var(--mid);
+    font-weight: 400;
+  }
+  h3{
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--mid);
+    margin: 10px 0 6px;
+  }
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  td{
+    padding: 3.5px 0;
+    vertical-align: top;
+    border-bottom: 1px solid var(--faint);
+  }
+  td.keys{
+    width: 52%;
+    padding-right: 8px;
+  }
+  code{
+    font-family: "Consolas", "Cascadia Mono", monospace;
+    font-size: 11px;
+    background: var(--faint);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1px 4px;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  td.action{ color: #222; font-size: 11.5px; }
+  .full-width{
+    column-span: all;
+  }
+  .ex-box{
+    background: var(--faint);
+    border: 1px solid var(--line);
+    padding: 14px 18px;
+    margin-top: 4px;
+  }
+  .ex-box h2{ border-bottom: 1px solid var(--ink); }
+  .ex-box pre{
+    font-family: "Consolas", "Cascadia Mono", monospace;
+    font-size: 11.3px;
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 10px 12px;
+    margin: 6px 0;
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }
+  .ex-box code{
+    font-size: 11.3px;
+    background: #fff;
+  }
+  footer{
+    margin-top: 26px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-size: 10.5px;
+    color: var(--mid);
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  @media print{
+    body{ background: #fff; }
+    .page{ box-shadow:none; margin:0; padding: 0.3in 0.4in; max-width: none; }
+    .columns{ column-gap: 30px; }
+    section{ break-inside: avoid; page-break-inside: avoid; }
+    @page{ size: A4 landscape; margin: 12mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <h1>OpenCode CLI Cheat Sheet</h1>
+      <div class="subtitle">Command-line reference &middot; Windows edition</div>
+    </div>
+  </header>
+
+  <div class="columns">
+
+    <section>
+      <h2><span class="num">1</span>Basic Usage</h2>
+      <table>
+        <tr><td class="keys"><code>opencode</code></td><td class="action">Start TUI in current directory</td></tr>
+        <tr><td class="keys"><code>opencode &lt;project-dir&gt;</code></td><td class="action">Start TUI in a project</td></tr>
+        <tr><td class="keys"><code>opencode run &lt;message&gt;</code></td><td class="action">Run non-interactive with a prompt</td></tr>
+        <tr><td class="keys"><code>opencode -c</code></td><td class="action">Continue the last session</td></tr>
+        <tr><td class="keys"><code>opencode -s &lt;id&gt;</code></td><td class="action">Continue a specific session</td></tr>
+        <tr><td class="keys"><code>opencode --fork</code></td><td class="action">Fork session when continuing</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">2</span>Session Management</h2>
+      <table>
+        <tr><td class="keys"><code>opencode session list</code></td><td class="action">List sessions (<code>-n N</code>, <code>--format json</code>)</td></tr>
+        <tr><td class="keys"><code>opencode session delete &lt;id&gt;</code></td><td class="action">Delete a session</td></tr>
+        <tr><td class="keys"><code>opencode export &lt;id&gt;</code></td><td class="action">Export session (<code>--sanitize</code>)</td></tr>
+        <tr><td class="keys"><code>opencode import &lt;file|url&gt;</code></td><td class="action">Import from JSON or share URL</td></tr>
+        <tr><td class="keys"><code>opencode stats</code></td><td class="action">Token/cost stats (<code>--days</code>, <code>--models</code>)</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">3</span>Auth &amp; Providers</h2>
+      <table>
+        <tr><td class="keys"><code>opencode auth login</code></td><td class="action">Interactive login</td></tr>
+        <tr><td class="keys"><code>opencode auth login --provider &lt;id&gt;</code></td><td class="action">Login to specific provider</td></tr>
+        <tr><td class="keys"><code>opencode auth list</code></td><td class="action">List authenticated providers</td></tr>
+        <tr><td class="keys"><code>opencode auth logout</code></td><td class="action">Remove stored credentials</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">4</span>Models &amp; Agents</h2>
+      <table>
+        <tr><td class="keys"><code>opencode run -m &lt;provider/model&gt;</code></td><td class="action">Run with specific model</td></tr>
+        <tr><td class="keys"><code>opencode models</code></td><td class="action">List available models</td></tr>
+        <tr><td class="keys"><code>opencode models --refresh</code></td><td class="action">Refresh model cache</td></tr>
+        <tr><td class="keys"><code>opencode agent list</code></td><td class="action">List available agents</td></tr>
+        <tr><td class="keys"><code>opencode agent create</code></td><td class="action">Create a new agent</td></tr>
+        <tr><td class="keys"><code>opencode run --agent &lt;name&gt;</code></td><td class="action">Run with an agent</td></tr>
+      </table>
+      <div style="font-size:11px;color:var(--mid);margin-top:4px;">Agent create (non-interactive): <code style="white-space:normal;word-break:break-all;">opencode agent create --path &lt;file&gt; --description &lt;text&gt; --mode subagent --permissions read,edit</code></div>
+    </section>
+
+    <section>
+      <h2><span class="num">5</span>MCP Management</h2>
+      <table>
+        <tr><td class="keys"><code>opencode mcp add</code></td><td class="action">Add an MCP server</td></tr>
+        <tr><td class="keys"><code>opencode mcp list</code></td><td class="action">List configured servers</td></tr>
+        <tr><td class="keys"><code>opencode mcp auth &lt;name&gt;</code></td><td class="action">OAuth login for MCP server</td></tr>
+        <tr><td class="keys"><code>opencode mcp debug &lt;name&gt;</code></td><td class="action">Debug OAuth issues</td></tr>
+        <tr><td class="keys"><code>opencode mcp logout &lt;name&gt;</code></td><td class="action">Remove OAuth credentials</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">6</span>Server &amp; Web Mode</h2>
+      <table>
+        <tr><td class="keys"><code>opencode serve</code></td><td class="action">Headless HTTP API server</td></tr>
+        <tr><td class="keys"><code>opencode web</code></td><td class="action">Server with web interface</td></tr>
+        <tr><td class="keys"><code>opencode attach &lt;url&gt;</code></td><td class="action">Attach TUI to backend server</td></tr>
+      </table>
+      <div style="font-size:11px;color:var(--mid);margin-top:4px;">Server flags: <code>--port</code>, <code>--hostname</code>, <code>--mdns</code>, <code>--cors</code>. Set <code>OPENCODE_SERVER_PASSWORD</code> for auth.</div>
+    </section>
+
+    <section>
+      <h2><span class="num">7</span>GitHub &amp; PRs</h2>
+      <table>
+        <tr><td class="keys"><code>opencode github install</code></td><td class="action">Install GitHub agent</td></tr>
+        <tr><td class="keys"><code>opencode github run</code></td><td class="action">Run GitHub agent</td></tr>
+        <tr><td class="keys"><code>opencode pr &lt;number&gt;</code></td><td class="action">Fetch PR branch and run</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">8</span>Plugins</h2>
+      <table>
+        <tr><td class="keys"><code>opencode plugin &lt;module&gt;</code></td><td class="action">Install a plugin</td></tr>
+        <tr><td class="keys"><code>opencode plug &lt;module&gt;</code></td><td class="action">Short alias</td></tr>
+        <tr><td class="keys"><code>opencode plugin &lt;module&gt; -g</code></td><td class="action">Install globally</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">9</span>Utilities</h2>
+      <table>
+        <tr><td class="keys"><code>opencode upgrade</code></td><td class="action">Update to latest version</td></tr>
+        <tr><td class="keys"><code>opencode upgrade &lt;version&gt;</code></td><td class="action">Upgrade to specific version</td></tr>
+        <tr><td class="keys"><code>opencode uninstall</code></td><td class="action">Remove OpenCode</td></tr>
+        <tr><td class="keys"><code>opencode db</code></td><td class="action">Database query</td></tr>
+        <tr><td class="keys"><code>opencode db path</code></td><td class="action">Print database path</td></tr>
+        <tr><td class="keys"><code>opencode debug</code></td><td class="action">Troubleshooting tools</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">10</span>Global Flags</h2>
+      <table>
+        <tr><td class="keys"><code>-h</code>, <code>--help</code></td><td class="action">Display help</td></tr>
+        <tr><td class="keys"><code>-v</code>, <code>--version</code></td><td class="action">Print version</td></tr>
+        <tr><td class="keys"><code>--print-logs</code></td><td class="action">Logs to stderr</td></tr>
+        <tr><td class="keys"><code>--log-level &lt;level&gt;</code></td><td class="action">DEBUG / INFO / WARN / ERROR</td></tr>
+        <tr><td class="keys"><code>--pure</code></td><td class="action">Run without external plugins</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">11</span>Key Env Vars</h2>
+      <table>
+        <tr><td class="keys"><code>OPENCODE_CONFIG</code></td><td class="action">Path to config file</td></tr>
+        <tr><td class="keys"><code>OPENCODE_CONFIG_DIR</code></td><td class="action">Config directory path</td></tr>
+        <tr><td class="keys"><code>OPENCODE_TUI_CONFIG</code></td><td class="action">TUI config file path</td></tr>
+        <tr><td class="keys"><code>OPENCODE_SERVER_PASSWORD</code></td><td class="action">Basic auth for serve/web</td></tr>
+        <tr><td class="keys"><code>OPENCODE_DISABLE_AUTOUPDATE</code></td><td class="action">Disable auto-update checks</td></tr>
+        <tr><td class="keys"><code>OPENCODE_GIT_BASH_PATH</code></td><td class="action">Path to Git Bash (Windows)</td></tr>
+      </table>
+    </section>
+
+    <section class="full-width ex-box">
+      <h2><span class="num">12</span>Practical Examples</h2>
+      <pre>rem Quick question
+opencode run "How do I sort a list in Python?"
+
+rem With file context
+opencode run -f src/main.js "Find bugs in this file"
+
+rem Specific model
+opencode run -m anthropic/claude-sonnet-5 "Explain this code"
+
+rem Continue last session non-interactively
+opencode run -c "Finish what you started"
+
+rem Export thinking blocks
+opencode run --thinking "Debug this crash"
+
+rem List recent sessions as JSON
+opencode session list -n 10 --format json
+
+rem Start web interface
+opencode web --port 8080 --hostname 0.0.0.0
+
+rem Auto-approve permissions (use with caution)
+opencode run --auto "Install and configure ESLint"
+
+rem Headless server
+set OPENCODE_SERVER_PASSWORD=mypass
+opencode serve --port 4096</pre>
+    </section>
+
+  </div>
+
+  <footer>
+    <span>OpenCode CLI Cheat Sheet &middot; Default commands, Windows edition</span>
+    <span>Version: 2026-07-04 &middot; OpenCode v1.17.13 &mdash; Source: <a href="https://opencode.ai/docs/cli">opencode.ai/docs/cli</a> &mdash; verify against your installed version</span>
+    <span style="width:100%;margin-top:4px;font-size:10px;">&copy; 2026 Robert H. Engelhardt &middot; Apache 2.0 License &middot; Latest version: <a href="https://github.com/rheone/miscellaneous-agentic-tooling">https://github.com/rheone/miscellaneous-agentic-tooling</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
