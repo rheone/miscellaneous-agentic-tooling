@@ -2,6 +2,10 @@
 
 Miscellaneous Agentic AI tooling [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview), [OpenCode](https://opencode.ai/), and other AI coding agents.
 
+- [Skills](#skills)
+- [Installation](#installation)
+- [Cheatsheets](#cheatsheets)
+
 ## Skills
 
 | Category             | Skill                                                             | Description                                                                  |
@@ -11,7 +15,7 @@ Miscellaneous Agentic AI tooling [Claude Code](https://docs.anthropic.com/en/doc
 | **Obsidian**         | [`obsidian-templater`](skills/obsidian-templater)                 | Create Obsidian templates with Templater syntax, validation, and testing     |
 | **Obsidian**         | [`obsidian-ics-sync`](skills/obsidian-ics-sync)                   | Sync ICS calendar events into Obsidian daily notes with wikilink matching    |
 
-## Installation
+### Installation
 
 Install all skills:
 
@@ -45,3 +49,16 @@ npx skills list
 npx skills enable homeassistant-awtrix homeassistant-pixoo64
 npx skills disable obsidian-ics-sync
 ```
+
+## Cheatsheets
+
+| Tool | Subject | Platform | HTML | Markdown |
+|------|---------|----------|------|----------|
+| **Claude Code** | CLI | Linux/macOS | [HTML](cheatsheets/claude/claude-code-cli-linux-mac.html) | [Markdown](cheatsheets/claude/claude-code-cli-linux-mac.md) |
+| **Claude Code** | CLI | Windows | [HTML](cheatsheets/claude/claude-code-cli-windows.html) | [Markdown](cheatsheets/claude/claude-code-cli-windows.md) |
+| **Claude Code** | Keybindings | Linux/macOS | [HTML](cheatsheets/claude/claude-code-keybindings-linux-mac.html) | [Markdown](cheatsheets/claude/claude-code-keybindings-linux-mac.md) |
+| **Claude Code** | Keybindings | Windows | [HTML](cheatsheets/claude/claude-code-keybindings-windows.html) | [Markdown](cheatsheets/claude/claude-code-keybindings-windows.md) |
+| **OpenCode** | CLI | Linux/macOS | [HTML](cheatsheets/opencode/opencode-cli-linux-mac.html) | [Markdown](cheatsheets/opencode/opencode-cli-linux-mac.md) |
+| **OpenCode** | CLI | Windows | [HTML](cheatsheets/opencode/opencode-cli-windows.html) | [Markdown](cheatsheets/opencode/opencode-cli-windows.md) |
+| **OpenCode** | Keybindings | Linux/macOS | [HTML](cheatsheets/opencode/opencode-keybindings-linux-mac.html) | [Markdown](cheatsheets/opencode/opencode-keybindings-linux-mac.md) |
+| **OpenCode** | Keybindings | Windows | [HTML](cheatsheets/opencode/opencode-keybindings-windows.html) | [Markdown](cheatsheets/opencode/opencode-keybindings-windows.md) |

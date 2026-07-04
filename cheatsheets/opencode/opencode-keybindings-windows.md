@@ -1,0 +1,247 @@
+# OpenCode Keybinding Cheat Sheet
+
+## Default keybinds — Windows edition
+
+> Leader key: **Ctrl+X** — press it, release, then press the next key.
+> Example: **Ctrl+X** then **N** = new session.
+
+---
+
+## 1. Leader Key Basics
+
+| Keys                | Action                                                           |
+| ------------------- | ---------------------------------------------------------------- |
+| `Ctrl+X` then `key` | Leader combo — activates a 2-second window to press the next key |
+| `Ctrl+P`            | Open command palette                                             |
+
+---
+
+## 2. App Control
+
+| Keys                             | Action                                      |
+| -------------------------------- | ------------------------------------------- |
+| `Ctrl+C` / `Ctrl+D` / `Ctrl+X Q` | Exit OpenCode                               |
+| `Ctrl+X E`                       | Open external editor for composing messages |
+| `Ctrl+X T`                       | Open theme list                             |
+| `Ctrl+X B`                       | Toggle sidebar                              |
+| `Ctrl+X S`                       | Toggle status view                          |
+
+---
+
+## 3. Session Management
+
+| Keys       | Action                      |
+| ---------- | --------------------------- |
+| `Ctrl+X N` | New session                 |
+| `Ctrl+X L` | List sessions               |
+| `Ctrl+X G` | Session timeline            |
+| `Ctrl+X X` | Export session to Markdown  |
+| `Ctrl+X C` | Compact / summarize session |
+| `Ctrl+R`   | Rename session              |
+| `Ctrl+D`   | Delete session              |
+| `Escape`   | Interrupt running response  |
+
+---
+
+## 4. Subagent / Session Navigation
+
+| Keys              | Action                               |
+| ----------------- | ------------------------------------ |
+| `Ctrl+X` then `↓` | Go to first child (subagent) session |
+| `→`               | Cycle to next child session          |
+| `←`               | Cycle to previous child session      |
+| `↑`               | Go to parent session                 |
+
+---
+
+## 5. Models & Agents
+
+| Keys        | Action                          |
+| ----------- | ------------------------------- |
+| `Ctrl+A`    | List model providers            |
+| `Ctrl+F`    | Toggle model as favorite        |
+| `Ctrl+X M`  | Open model list                 |
+| `F2`        | Cycle recent models (forward)   |
+| `Shift+F2`  | Cycle recent models (reverse)   |
+| `Ctrl+X A`  | Open agent list                 |
+| `Tab`       | Cycle agent (e.g. Build → Plan) |
+| `Shift+Tab` | Cycle agent (reverse)           |
+| `Ctrl+T`    | Cycle variant                   |
+
+---
+
+## 6. Messages: Scrolling & Navigation
+
+| Keys                       | Action                |
+| -------------------------- | --------------------- |
+| `Page Up` / `Ctrl+Alt+B`   | Page up               |
+| `Page Down` / `Ctrl+Alt+F` | Page down             |
+| `Ctrl+Alt+Y`               | Line up               |
+| `Ctrl+Alt+E`               | Line down             |
+| `Ctrl+Alt+U`               | Half page up          |
+| `Ctrl+Alt+D`               | Half page down        |
+| `Ctrl+G` / `Home`          | Jump to first message |
+| `Ctrl+Alt+G` / `End`       | Jump to last message  |
+
+---
+
+## 7. Messages: Actions
+
+| Keys       | Action                                         |
+| ---------- | ---------------------------------------------- |
+| `Ctrl+X Y` | Copy message                                   |
+| `Ctrl+X U` | Undo                                           |
+| `Ctrl+X R` | Redo                                           |
+| `Ctrl+X H` | Toggle message concealment (also toggles tips) |
+
+---
+
+## 8. Input Editing — Move Cursor
+
+| Keys                         | Action                            |
+| ---------------------------- | --------------------------------- |
+| `←` / `Ctrl+B`               | Move left one character           |
+| `→` / `Ctrl+F`               | Move right one character          |
+| `↑`                          | Move up a line / previous history |
+| `↓`                          | Move down a line / next history   |
+| `Alt+F` / `Alt+→` / `Ctrl+→` | Move forward one word             |
+| `Alt+B` / `Alt+←` / `Ctrl+←` | Move backward one word            |
+| `Ctrl+A`                     | Move to start of line             |
+| `Ctrl+E`                     | Move to end of line               |
+| `Alt+A`                      | Move to start of visual line      |
+| `Alt+E`                      | Move to end of visual line        |
+| `Home`                       | Move to start of buffer           |
+| `End`                        | Move to end of buffer             |
+
+## 9. Input Editing — Select Text
+
+| Keys                          | Action                         |
+| ----------------------------- | ------------------------------ |
+| `Shift+←` / `Shift+→`         | Select character left / right  |
+| `Shift+↑` / `Shift+↓`         | Select line up / down          |
+| `Alt+Shift+F` / `Alt+Shift+→` | Select word forward            |
+| `Alt+Shift+B` / `Alt+Shift+←` | Select word backward           |
+| `Ctrl+Shift+A`                | Select to start of line        |
+| `Ctrl+Shift+E`                | Select to end of line          |
+| `Alt+Shift+A`                 | Select to start of visual line |
+| `Alt+Shift+E`                 | Select to end of visual line   |
+| `Shift+Home`                  | Select to start of buffer      |
+| `Shift+End`                   | Select to end of buffer        |
+| `Super+A`                     | Select all                     |
+
+## 10. Input Editing — Delete
+
+| Keys                                          | Action                    |
+| --------------------------------------------- | ------------------------- |
+| `Backspace` / `Shift+Backspace`               | Delete character backward |
+| `Ctrl+D` / `Delete` / `Shift+Delete`          | Delete character forward  |
+| `Ctrl+K`                                      | Delete to end of line     |
+| `Ctrl+U`                                      | Delete to start of line   |
+| `Ctrl+Shift+D`                                | Delete entire line        |
+| `Alt+D` / `Alt+Delete` / `Ctrl+Delete`        | Delete word forward       |
+| `Ctrl+W` / `Ctrl+Backspace` / `Alt+Backspace` | Delete word backward      |
+
+## 11. Input Editing — Undo / History
+
+| Keys                               | Action                 |
+| ---------------------------------- | ---------------------- |
+| `Ctrl+Z` \* / `Ctrl+-` / `Super+Z` | Undo                   |
+| `Ctrl+.` / `Super+Shift+Z`         | Redo                   |
+| `↑` (in empty input)               | Previous history entry |
+| `↓` (in empty input)               | Next history entry     |
+
+\* `Ctrl+Z` is added to `input_undo` by default **only on Windows**, since Windows terminals don't support POSIX suspend.
+
+## 12. Input Editing — Submit & Newline
+
+| Keys                                                  | Action                                           |
+| ----------------------------------------------------- | ------------------------------------------------ |
+| `Enter`                                               | Submit prompt                                    |
+| `Shift+Enter` / `Ctrl+Enter` / `Alt+Enter` / `Ctrl+J` | Insert newline (see Windows Terminal note below) |
+| `Ctrl+C`                                              | Clear input                                      |
+| `Ctrl+V`                                              | Paste                                            |
+
+---
+
+## 13. Dialogs & Autocomplete
+
+| Keys                    | Action                              |
+| ----------------------- | ----------------------------------- |
+| `↑` / `Ctrl+P`          | Previous item in list dialog        |
+| `↓` / `Ctrl+N`          | Next item in list dialog            |
+| `Page Up` / `Page Down` | Page through dialog list            |
+| `Home` / `End`          | Jump to top / bottom of dialog list |
+| `Enter`                 | Confirm selection                   |
+| `Space`                 | Toggle item (MCP list, plugin list) |
+| `Escape`                | Hide autocomplete                   |
+| `Tab`                   | Complete autocomplete suggestion    |
+| `Shift+I`               | Install plugin (plugin dialog)      |
+| `Ctrl+F`                | Fullscreen permission prompt        |
+
+---
+
+## 14. Which-Key Menu
+
+| Keys                        | Action                      |
+| --------------------------- | --------------------------- |
+| `Ctrl+Alt+K`                | Toggle which-key menu       |
+| `Ctrl+Alt+Shift+K`          | Toggle which-key layout     |
+| `Ctrl+Alt+Shift+P`          | Toggle pending keys display |
+| `Ctrl+Alt+←` / `Ctrl+Alt+[` | Previous key group          |
+| `Ctrl+Alt+→` / `Ctrl+Alt+]` | Next key group              |
+| `Ctrl+Alt+↑` / `Ctrl+Alt+P` | Scroll up                   |
+| `Ctrl+Alt+↓` / `Ctrl+Alt+N` | Scroll down                 |
+| `Ctrl+Alt+Page Up/Down`     | Page through which-key      |
+| `Ctrl+Alt+Home/End`         | Jump to top / bottom        |
+
+---
+
+## 15. Windows-Specific Notes
+
+- **Leader key** default is `Ctrl+X` — same on Windows as elsewhere.
+- **`terminal_suspend`** is disabled (`none`) by default on Windows, since native Windows terminals don't support POSIX process suspend.
+- **`input_undo`** includes an extra `Ctrl+Z` binding on Windows only (in addition to `Ctrl+-` and `Super+Z`).
+- **Shift+Enter for newline** doesn't work out of the box in some terminals. To fix it in **Windows Terminal**:
+   1. Open `%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json`
+   2. Add to the root-level `actions` array:
+
+      ```json
+      {
+         "command": { "action": "sendInput", "input": "\u001b[13;2u" },
+         "id": "User.sendInput.ShiftEnterCustom"
+      }
+      ```
+
+   3. Add to the root-level `keybindings` array:
+
+      ```json
+      { "keys": "shift+enter", "id": "User.sendInput.ShiftEnterCustom" }
+      ```
+
+   4. Save and restart Windows Terminal (or open a new tab).
+   - Alternatively, use `Ctrl+Enter`, `Alt+Enter`, or `Ctrl+J` for a newline without any config changes.
+
+---
+
+## Customizing Keybinds
+
+Edit `tui.json` in your OpenCode config directory. Example:
+
+```json
+{
+   "$schema": "https://opencode.ai/tui.json",
+   "keybinds": {
+      "leader": "ctrl+x",
+      "session_new": "<leader>n"
+   }
+}
+```
+
+- Multiple bindings: separate with commas, e.g. `"ctrl+g,home"`
+- Leader prefix: use `<leader>`, e.g. `"<leader>n"`
+- Disable a keybind: set its value to `"none"`
+
+_Version: 2026-07-04 · OpenCode v1.17.13 | Source: [opencode.ai/docs/keybinds](https://opencode.ai/docs/keybinds) — verify against your installed version, as defaults can change between releases._
+
+_© 2026 Robert H. Engelhardt · Apache 2.0 License_
+_Latest version: [https://github.com/rheone/miscellaneous-agentic-tooling](https://github.com/rheone/miscellaneous-agentic-tooling)_
