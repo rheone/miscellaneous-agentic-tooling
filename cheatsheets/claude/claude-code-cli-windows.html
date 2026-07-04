@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Claude Code CLI Cheat Sheet — Windows</title>
+<style>
+  :root{
+    --ink:#111;
+    --mid:#555;
+    --line:#bbb;
+    --faint:#eee;
+    --paper:#fff;
+  }
+  *{ box-sizing:border-box; }
+  html,body{
+    margin:0; padding:0;
+    background:#e8e8e8;
+    color:var(--ink);
+    font-family: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+  }
+  .page{
+    max-width: 1000px;
+    margin: 24px auto;
+    background: var(--paper);
+    padding: 40px 48px 56px;
+    box-shadow: 0 0 0 1px var(--line), 0 6px 24px rgba(0,0,0,0.15);
+  }
+  header{
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  h1{
+    font-size: 26px;
+    letter-spacing: 0.02em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .subtitle{
+    color: var(--mid);
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .columns{
+    column-count: 2;
+    column-gap: 40px;
+  }
+  section{
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    margin-bottom: 22px;
+  }
+  h2{
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    margin: 0 0 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--ink);
+  }
+  h2 .num{
+    display:inline-block;
+    width: 18px;
+    color: var(--mid);
+    font-weight: 400;
+  }
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  td{
+    padding: 3.5px 0;
+    vertical-align: top;
+    border-bottom: 1px solid var(--faint);
+  }
+  td.keys{
+    width: 52%;
+    padding-right: 8px;
+  }
+  code{
+    font-family: "Consolas", "Cascadia Mono", monospace;
+    font-size: 11px;
+    background: var(--faint);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1px 4px;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  td.action{ color: #222; font-size: 11.5px; }
+  .full-width{
+    column-span: all;
+  }
+  .ex-box{
+    background: var(--faint);
+    border: 1px solid var(--line);
+    padding: 14px 18px;
+    margin-top: 4px;
+  }
+  .ex-box h2{ border-bottom: 1px solid var(--ink); }
+  .ex-box pre{
+    font-family: "Consolas", "Cascadia Mono", monospace;
+    font-size: 11.3px;
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 10px 12px;
+    margin: 6px 0;
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }
+  .ex-box code{
+    font-size: 11.3px;
+    background: #fff;
+  }
+  footer{
+    margin-top: 26px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-size: 10.5px;
+    color: var(--mid);
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  @media print{
+    body{ background: #fff; }
+    .page{ box-shadow:none; margin:0; padding: 0.3in 0.4in; max-width: none; }
+    .columns{ column-gap: 30px; }
+    section{ break-inside: avoid; page-break-inside: avoid; }
+    @page{ size: A4 landscape; margin: 12mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <h1>Claude Code CLI Cheat Sheet</h1>
+      <div class="subtitle">Command-line reference &middot; Windows edition</div>
+    </div>
+  </header>
+
+  <div class="columns">
+
+    <section>
+      <h2><span class="num">1</span>Starting Sessions</h2>
+      <table>
+        <tr><td class="keys"><code>claude</code></td><td class="action">Start interactive session</td></tr>
+        <tr><td class="keys"><code>claude "query"</code></td><td class="action">Interactive with initial prompt</td></tr>
+        <tr><td class="keys"><code>claude -p "query"</code></td><td class="action">Print mode &mdash; run and exit</td></tr>
+        <tr><td class="keys"><code>claude -c</code></td><td class="action">Continue most recent conversation</td></tr>
+        <tr><td class="keys"><code>claude -c -p "query"</code></td><td class="action">Continue in print mode</td></tr>
+        <tr><td class="keys"><code>claude -r &lt;session&gt;</code></td><td class="action">Resume by ID or name</td></tr>
+        <tr><td class="keys"><code>claude -n "name"</code></td><td class="action">Set a display name</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">2</span>Print Mode Flags</h2>
+      <table>
+        <tr><td class="keys"><code>-p, --print "query"</code></td><td class="action">Run query, print, exit</td></tr>
+        <tr><td class="keys"><code>--output-format text|json|stream-json</code></td><td class="action">Output format</td></tr>
+        <tr><td class="keys"><code>--json-schema &lt;schema&gt;</code></td><td class="action">Validated JSON output</td></tr>
+        <tr><td class="keys"><code>--max-turns &lt;N&gt;</code></td><td class="action">Limit agentic turns</td></tr>
+        <tr><td class="keys"><code>--max-budget-usd &lt;$&gt;</code></td><td class="action">Max API spend</td></tr>
+        <tr><td class="keys"><code>--no-session-persistence</code></td><td class="action">Don't save session</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">3</span>Pipeline &amp; Automation</h2>
+      <table>
+        <tr><td class="keys"><code>Get-Content file | claude -p "q"</code></td><td class="action">Pipe file content</td></tr>
+        <tr><td class="keys"><code>claude --bare -p "query"</code></td><td class="action">Minimal mode (fast)</td></tr>
+        <tr><td class="keys"><code>claude --init -p "query"</code></td><td class="action">Run setup hooks</td></tr>
+        <tr><td class="keys"><code>claude --init-only</code></td><td class="action">Setup hooks, then exit</td></tr>
+        <tr><td class="keys"><code>claude --effort &lt;level&gt;</code></td><td class="action">low/medium/high/xhigh/max</td></tr>
+        <tr><td class="keys"><code>claude --fallback-model &lt;m&gt;</code></td><td class="action">Comma-separated fallbacks</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">4</span>Permission Modes</h2>
+      <table>
+        <tr><td class="keys"><code>--permission-mode default</code></td><td class="action">Manual &mdash; prompt each action</td></tr>
+        <tr><td class="keys"><code>--permission-mode acceptEdits</code></td><td class="action">Auto-accept edits</td></tr>
+        <tr><td class="keys"><code>--permission-mode plan</code></td><td class="action">Plan only &mdash; no changes</td></tr>
+        <tr><td class="keys"><code>--permission-mode auto</code></td><td class="action">Auto-decide by risk</td></tr>
+        <tr><td class="keys"><code>--permission-mode bypassPermissions</code></td><td class="action">Skip all prompts</td></tr>
+        <tr><td class="keys"><code>--dangerously-skip-permissions</code></td><td class="action">Same as bypassPermissions</td></tr>
+        <tr><td class="keys"><code>--allowedTools "..."</code></td><td class="action">Skip prompts for these tools</td></tr>
+        <tr><td class="keys"><code>--disallowedTools "..."</code></td><td class="action">Deny these tools</td></tr>
+        <tr><td class="keys"><code>--tools "Bash,Edit,Read"</code></td><td class="action">Restrict available tools</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">5</span>System Prompt</h2>
+      <table>
+        <tr><td class="keys"><code>--system-prompt "text"</code></td><td class="action">Replace default prompt</td></tr>
+        <tr><td class="keys"><code>--system-prompt-file &lt;path&gt;</code></td><td class="action">Load replacement from file</td></tr>
+        <tr><td class="keys"><code>--append-system-prompt "text"</code></td><td class="action">Append to default</td></tr>
+        <tr><td class="keys"><code>--append-system-prompt-file &lt;path&gt;</code></td><td class="action">Append from file</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">6</span>Background &amp; Daemon</h2>
+      <table>
+        <tr><td class="keys"><code>claude --bg "task"</code></td><td class="action">Start background session</td></tr>
+        <tr><td class="keys"><code>claude --bg --exec "cmd"</code></td><td class="action">Background shell job</td></tr>
+        <tr><td class="keys"><code>claude agents</code></td><td class="action">Monitor / dispatch sessions</td></tr>
+        <tr><td class="keys"><code>claude agents --json</code></td><td class="action">List active as JSON</td></tr>
+        <tr><td class="keys"><code>claude attach &lt;id&gt;</code></td><td class="action">Attach to background session</td></tr>
+        <tr><td class="keys"><code>claude logs &lt;id&gt;</code></td><td class="action">Print recent output</td></tr>
+        <tr><td class="keys"><code>claude stop &lt;id&gt;</code></td><td class="action">Stop a session</td></tr>
+        <tr><td class="keys"><code>claude respawn &lt;id&gt;</code></td><td class="action">Restart session</td></tr>
+        <tr><td class="keys"><code>claude daemon status</code></td><td class="action">Check supervisor state</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">7</span>Authentication</h2>
+      <table>
+        <tr><td class="keys"><code>claude auth login</code></td><td class="action">Sign in to Anthropic</td></tr>
+        <tr><td class="keys"><code>claude auth login --console</code></td><td class="action">Sign in with API key</td></tr>
+        <tr><td class="keys"><code>claude auth login --sso</code></td><td class="action">Force SSO</td></tr>
+        <tr><td class="keys"><code>claude auth logout</code></td><td class="action">Log out</td></tr>
+        <tr><td class="keys"><code>claude auth status</code></td><td class="action">Auth status as JSON</td></tr>
+        <tr><td class="keys"><code>claude setup-token</code></td><td class="action">Long-lived OAuth token</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">8</span>MCP &amp; Plugins</h2>
+      <table>
+        <tr><td class="keys"><code>claude mcp</code></td><td class="action">MCP server config</td></tr>
+        <tr><td class="keys"><code>claude mcp login &lt;name&gt;</code></td><td class="action">OAuth for MCP server</td></tr>
+        <tr><td class="keys"><code>claude mcp logout &lt;name&gt;</code></td><td class="action">Clear OAuth credentials</td></tr>
+        <tr><td class="keys"><code>--mcp-config &lt;path&gt;</code></td><td class="action">Load MCP from JSON</td></tr>
+        <tr><td class="keys"><code>--strict-mcp-config</code></td><td class="action">Only MCP from --mcp-config</td></tr>
+        <tr><td class="keys"><code>claude plugin install &lt;name&gt;</code></td><td class="action">Install a plugin</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">9</span>Utilities</h2>
+      <table>
+        <tr><td class="keys"><code>claude update</code></td><td class="action">Update to latest</td></tr>
+        <tr><td class="keys"><code>claude install &lt;version&gt;</code></td><td class="action">Install specific version</td></tr>
+        <tr><td class="keys"><code>claude project purge &lt;path&gt;</code></td><td class="action">Delete project state</td></tr>
+        <tr><td class="keys"><code>claude -w &lt;name&gt;</code></td><td class="action">Git worktree session</td></tr>
+        <tr><td class="keys"><code>claude --cloud "task"</code></td><td class="action">Web session on claude.ai</td></tr>
+        <tr><td class="keys"><code>claude --teleport</code></td><td class="action">Resume web session locally</td></tr>
+        <tr><td class="keys"><code>claude -v</code></td><td class="action">Print version</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="num">10</span>Key Flags</h2>
+      <table>
+        <tr><td class="keys"><code>--model &lt;alias|name&gt;</code></td><td class="action">Set model</td></tr>
+        <tr><td class="keys"><code>--agent &lt;name&gt;</code></td><td class="action">Specify custom agent</td></tr>
+        <tr><td class="keys"><code>--add-dir &lt;path&gt;</code></td><td class="action">Additional directories</td></tr>
+        <tr><td class="keys"><code>--chrome / --no-chrome</code></td><td class="action">Chrome integration</td></tr>
+        <tr><td class="keys"><code>--safe-mode</code></td><td class="action">Disable customizations</td></tr>
+        <tr><td class="keys"><code>--debug "api,mcp"</code></td><td class="action">Debug with category filter</td></tr>
+        <tr><td class="keys"><code>--verbose</code></td><td class="action">Full turn-by-turn output</td></tr>
+        <tr><td class="keys"><code>--settings &lt;file|json&gt;</code></td><td class="action">Override settings</td></tr>
+        <tr><td class="keys"><code>--fork-session</code></td><td class="action">Fork on resume</td></tr>
+        <tr><td class="keys"><code>--from-pr &lt;number|url&gt;</code></td><td class="action">Resume PR-linked session</td></tr>
+        <tr><td class="keys"><code>--advisor &lt;model&gt;</code></td><td class="action">Server-side advisor</td></tr>
+        <tr><td class="keys"><code>--ax-screen-reader</code></td><td class="action">Screen-reader output</td></tr>
+        <tr><td class="keys"><code>--remote-control</code></td><td class="action">Enable remote control</td></tr>
+      </table>
+    </section>
+
+    <section class="full-width ex-box">
+      <h2><span class="num">11</span>Practical Examples</h2>
+      <pre>rem Quick question
+claude -p "How do I sort a list in Python?"
+
+rem Resume and continue work
+claude -r auth-refactor "Finish the remaining tests"
+
+rem Background investigation
+claude --bg "Find the cause of the flaky test"
+
+rem Pipe content + query
+Get-Content package.json | claude -p "Suggest dependency updates"
+
+rem Print mode with structured output
+claude -p --output-format json "List all npm scripts" > scripts.json
+
+rem Budget-limited automation
+claude -p --max-budget-usd 2.00 "Fix all lint errors"
+
+rem Bare mode for fast scripting
+claude --bare -p "Count LOC in src/"
+
+rem Safe mode to troubleshoot config issues
+claude --safe-mode
+
+rem With custom model and effort
+claude -p --model claude-sonnet-5 --effort high "Review this PR"
+
+rem Worktree for isolated changes
+claude -w feature-auth
+
+rem System prompt override
+claude --system-prompt "You are a Python expert" -p "Review this script"</pre>
+    </section>
+
+  </div>
+
+  <footer>
+    <span>Claude Code CLI Cheat Sheet &middot; Default commands, Windows edition</span>
+    <span>Version: 2026-07-04 &middot; Claude Code v2.1+ &mdash; Source: <a href="https://code.claude.com/docs/en/cli-reference">code.claude.com/docs/en/cli-reference</a> &mdash; verify against your installed version</span>
+    <span style="width:100%;margin-top:4px;font-size:10px;">&copy; 2026 Robert H. Engelhardt &middot; Apache 2.0 License &middot; Latest version: <a href="https://github.com/rheone/miscellaneous-agentic-tooling">https://github.com/rheone/miscellaneous-agentic-tooling</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
