@@ -12,6 +12,7 @@ description: >-
 license: Apache-2.0
 user-invocable: true
 metadata:
+  source: https://github.com/rheone/miscellaneous-agentic-tooling
   info: >-
     For Ulanzi TC001 Smart Pixel Clocks
       See:<https://www.ulanzi.com/products/ulanzi-tc001-smart-pixel-clock>
@@ -23,7 +24,7 @@ metadata:
       See: <https://github.com/10der/homeassistant-custom_components-awtrix>
     LaMetric Iconograph can be found at <https://developer.lametric.com/icons>
   author: Robert Engelhardt <rheone@gmail.com>
-  version: 1.0.1
+  version: "1.0.2"
 ---
 
 # Home Assistant AWTRIX 3 Skill

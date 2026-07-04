@@ -12,6 +12,7 @@ description: >-
 license: Apache-2.0
 user-invocable: true
 metadata:
+  source: https://github.com/rheone/miscellaneous-agentic-tooling
   info: >-
     For Divoom Pixoo 64 displays
       See: <https://divoom.com/products/pixoo-64>
@@ -20,7 +21,7 @@ metadata:
     Uses home assistant Divoom Pixoo 64 integration - a 64x64 pixel 
     LAN-connected display
   author: Robert Engelhardt <rheone@gmail.com>
-  version: 1.0.1
+  version: "1.0.2"
 ---
 
 # Home Assistant Divoom Pixoo 64 Skill

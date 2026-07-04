@@ -4,8 +4,9 @@ description: Create Obsidian templates with Templater syntax (tp.date, tp.file, 
 license: Apache-2.0
 user-invocable: true
 metadata:
-   author: Robert Engelhardt <rheone@gmail.com>
-    version: 0.0.0
+  source: https://github.com/rheone/miscellaneous-agentic-tooling
+  author: Robert Engelhardt <rheone@gmail.com>
+  version: "0.0.0"
 ---
 
 # Obsidian Templater

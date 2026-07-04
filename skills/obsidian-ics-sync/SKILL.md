@@ -4,8 +4,9 @@ description: Extracts non-recurring calendar events from an ICS file and writes 
 license: Apache-2.0
 user-invocable: true
 metadata:
-  author: Robert Engelhardt <rheone@gmail.com>
-  version: 1.1.0
+   source: https://github.com/rheone/miscellaneous-agentic-tooling
+   author: Robert Engelhardt <rheone@gmail.com>
+   version: "1.1.1"
 ---
 
 # Obsidian ICS-to-Daily-Notes Sync
