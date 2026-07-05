@@ -14,6 +14,9 @@
 | `Ctrl+X` then `key` | Leader combo — activates a 2-second window to press the next key |
 | `Ctrl+P` | Open command palette |
 
+> **Tip:** You don't have to put custom keybinds behind the leader, but it's strongly recommended to avoid conflicts with your terminal or shell.
+> The leader timeout is configurable via `leader_timeout` (in milliseconds) in `tui.json`; default is `2000`.
+
 ---
 
 ## 2. App Control
@@ -51,6 +54,8 @@
 | `→` | Cycle to next child session |
 | `←` | Cycle to previous child session |
 | `↑` | Go to parent session |
+
+The arrow keys (`→`, `←`, `↑`) intentionally skip the leader key for quick subagent navigation. This means they may conflict with your terminal emulator's own bindings more readily than leader-prefixed shortcuts. To move them behind the leader, remap the corresponding action in `tui.json` (e.g. `"session_parent": "<leader>up"`).
 
 ---
 
@@ -242,7 +247,77 @@ Edit `tui.json` in your OpenCode config directory (typically `~/.config/opencode
 - Leader prefix: use `<leader>`, e.g. `"<leader>n"`
 - Disable a keybind: set its value to `"none"`
 
-*Version: 2026-07-04 · OpenCode v1.17.13 | Source: [opencode.ai/docs/keybinds](https://opencode.ai/docs/keybinds) — verify against your installed version, as defaults can change between releases.*
+---
+
+## Working in VS Code's Integrated Terminal
+
+VS Code's integrated terminal intercepts some keystrokes before they reach OpenCode. The most commonly affected default bindings are:
+
+| Key | VS Code default | OpenCode action |
+|---|---|---|
+| `Ctrl+F` | Terminal find | Toggle model favorite |
+| `Alt+←` / `Alt+→` | Navigate back / forward | Word backward / forward |
+| `Ctrl+G` | Terminal find (focused) | Jump to first message |
+| `Ctrl+K` | Chord prefix / clear | Delete to end of line |
+
+**Recommended workarounds (pick one):**
+
+1. **Use the leader key** — Most affected bindings have a leader-prefixed equivalent (e.g. `Ctrl+X M` instead of `Ctrl+A` for model list). Prefer these in VS Code's terminal.
+
+2. **Override VS Code shortcuts** — Forward the keys to the terminal by adding to VS Code's `keybindings.json`:
+   ```jsonc
+   {
+     "key": "ctrl+f",
+     "command": "-workbench.action.terminal.focusFind",
+     "when": "terminalFocus"
+   },
+   {
+     "key": "alt+left",
+     "command": "-workbench.action.navigateBack",
+     "when": "terminalFocus"
+   },
+   {
+     "key": "alt+right",
+     "command": "-workbench.action.navigateForward",
+     "when": "terminalFocus"
+   },
+   {
+     "key": "ctrl+g",
+     "command": "-workbench.action.terminal.focusFind",
+     "when": "terminalFocus"
+   }
+   ```
+
+3. **Remap in `tui.json`** — Move conflict-prone direct keys behind the leader:
+   ```json
+   {
+     "keybinds": {
+       "model_favorite_toggle": "<leader>f",
+       "input_word_forward": "<leader>w",
+       "input_word_backward": "<leader>b"
+     }
+   }
+   ```
+
+To find out what VS Code is doing with a specific keypress, run **Developer: Toggle Keyboard Shortcuts Troubleshooting** from the VS Code command palette and watch the output panel.
+
+Edit `tui.json` in your OpenCode config directory (typically `~/.config/opencode/tui.json`). Example:
+
+```json
+{
+  "$schema": "https://opencode.ai/tui.json",
+  "keybinds": {
+    "leader": "ctrl+x",
+    "session_new": "<leader>n"
+  }
+}
+```
+
+- Multiple bindings: separate with commas, e.g. `"ctrl+g,home"`
+- Leader prefix: use `<leader>`, e.g. `"<leader>n"`
+- Disable a keybind: set its value to `"none"`
+
+*Version: 2026-07-05 · OpenCode v1.17.13 | Source: [opencode.ai/docs/keybinds](https://opencode.ai/docs/keybinds) — verify against your installed version, as defaults can change between releases.*
 
 *© 2026 Robert H. Engelhardt · Apache 2.0 License*
 *Latest version: [https://github.com/rheone/miscellaneous-agentic-tooling](https://github.com/rheone/miscellaneous-agentic-tooling)*

@@ -176,9 +176,10 @@
     <section>
       <h2><span class="num">1</span>Leader Key Basics</h2>
       <table>
-        <tr><td class="keys"><kbd>Ctrl+X</kbd><span class="then">&rarr;</span><kbd>key</kbd></td><td class="action">Leader combo (2s window to press next key)</td></tr>
+        <tr><td class="keys"><kbd>Ctrl+X</kbd><span class="then">&rarr;</span><kbd>key</kbd></td><td class="action">Leader combo (2s window, configurable via <code>leader_timeout</code> in <code>tui.json</code>)</td></tr>
         <tr><td class="keys"><kbd>Ctrl+P</kbd></td><td class="action">Open command palette</td></tr>
       </table>
+      <div class="note">You don't have to put custom keybinds behind the leader, but it's strongly recommended to avoid conflicts with your terminal or shell. The leader timeout defaults to 2000&thinsp;ms.</div>
     </section>
 
     <section>
@@ -214,6 +215,7 @@
         <tr><td class="keys"><kbd>&larr;</kbd></td><td class="action">Cycle to previous child session</td></tr>
         <tr><td class="keys"><kbd>&uarr;</kbd></td><td class="action">Go to parent session</td></tr>
       </table>
+      <div class="note">The arrow keys (&rarr;, &larr;, &uarr;) intentionally skip the leader key for quick subagent navigation, making them more prone to terminal conflicts than leader-prefixed shortcuts. To move them behind the leader, remap in <code>tui.json</code>, e.g. <code>"session_parent": "&lt;leader&gt;up"</code>.</div>
     </section>
 
     <section>
@@ -276,6 +278,7 @@
         <tr><td class="keys"><kbd>Shift+&uarr;/&darr;</kbd></td><td class="action">Select line up/down</td></tr>
         <tr><td class="keys"><kbd>Alt+Shift+F/B</kbd></td><td class="action">Select word fwd/back</td></tr>
         <tr><td class="keys"><kbd>Ctrl+Shift+A/E</kbd></td><td class="action">Select to line start/end</td></tr>
+        <tr><td class="keys"><kbd>Alt+Shift+A/E</kbd></td><td class="action">Select to visual line start/end</td></tr>
         <tr><td class="keys"><kbd>Shift+Home/End</kbd></td><td class="action">Select to buffer start/end</td></tr>
         <tr><td class="keys"><kbd>Cmd+A</kbd> (macOS) / <kbd>Super+A</kbd> (Linux)</td><td class="action">Select all</td></tr>
       </table>
@@ -284,13 +287,13 @@
     <section>
       <h2><span class="num">10</span>Input: Delete</h2>
       <table>
-        <tr><td class="keys"><kbd>Backspace</kbd></td><td class="action">Delete char backward</td></tr>
-        <tr><td class="keys"><kbd>Delete</kbd> / <kbd>Ctrl+D</kbd></td><td class="action">Delete char forward</td></tr>
+        <tr><td class="keys"><kbd>Backspace</kbd> / <kbd>Shift+Backspace</kbd></td><td class="action">Delete char backward</td></tr>
+        <tr><td class="keys"><kbd>Delete</kbd> / <kbd>Ctrl+D</kbd> / <kbd>Shift+Delete</kbd></td><td class="action">Delete char forward</td></tr>
         <tr><td class="keys"><kbd>Ctrl+K</kbd></td><td class="action">Delete to end of line</td></tr>
         <tr><td class="keys"><kbd>Ctrl+U</kbd></td><td class="action">Delete to start of line</td></tr>
         <tr><td class="keys"><kbd>Ctrl+Shift+D</kbd></td><td class="action">Delete entire line</td></tr>
-        <tr><td class="keys"><kbd>Alt+D</kbd> / <kbd>Ctrl+Delete</kbd></td><td class="action">Delete word forward</td></tr>
-        <tr><td class="keys"><kbd>Ctrl+W</kbd> / <kbd>Ctrl+Backspace</kbd></td><td class="action">Delete word backward</td></tr>
+        <tr><td class="keys"><kbd>Alt+D</kbd> / <kbd>Alt+Delete</kbd> / <kbd>Ctrl+Delete</kbd></td><td class="action">Delete word forward</td></tr>
+        <tr><td class="keys"><kbd>Ctrl+W</kbd> / <kbd>Ctrl+Backspace</kbd> / <kbd>Alt+Backspace</kbd></td><td class="action">Delete word backward</td></tr>
       </table>
     </section>
 
@@ -376,11 +379,58 @@
       </ul>
     </section>
 
+    <section class="full-width win-notes">
+      <h2><span class="num">17</span>VS Code Integrated Terminal</h2>
+      <p>VS Code's integrated terminal intercepts some keystrokes before they reach OpenCode. The most commonly affected default bindings are:</p>
+      <table>
+        <tr><td class="keys"><kbd>Ctrl+F</kbd></td><td class="action">VS Code terminal find (conflicts with model favorite toggle)</td></tr>
+        <tr><td class="keys"><kbd>Alt+&larr;</kbd> / <kbd>Alt+&rarr;</kbd></td><td class="action">VS Code navigate back/forward (conflicts with word backward/forward)</td></tr>
+        <tr><td class="keys"><kbd>Ctrl+G</kbd></td><td class="action">VS Code terminal find (conflicts with jump to first message)</td></tr>
+        <tr><td class="keys"><kbd>Ctrl+K</kbd></td><td class="action">VS Code chord prefix / clear (conflicts with delete to end of line)</td></tr>
+      </table>
+      <p><b>Workarounds (pick one):</b></p>
+      <ol>
+        <li><b>Use the leader key</b> &mdash; Most affected bindings have a leader-prefixed equivalent (e.g. <kbd>Ctrl+X</kbd> <kbd>M</kbd> instead of <kbd>Ctrl+A</kbd> for model list). Prefer these in VS Code's terminal.</li>
+        <li><b>Override VS Code shortcuts</b> &mdash; Forward keys to the terminal by adding to VS Code's <code>keybindings.json</code>:
+          <pre>{
+  "key": "ctrl+f",
+  "command": "-workbench.action.terminal.focusFind",
+  "when": "terminalFocus"
+},
+{
+  "key": "alt+left",
+  "command": "-workbench.action.navigateBack",
+  "when": "terminalFocus"
+},
+{
+  "key": "alt+right",
+  "command": "-workbench.action.navigateForward",
+  "when": "terminalFocus"
+},
+{
+  "key": "ctrl+g",
+  "command": "-workbench.action.terminal.focusFind",
+  "when": "terminalFocus"
+}</pre>
+        </li>
+        <li><b>Remap in <code>tui.json</code></b> &mdash; Move conflict-prone direct keys behind the leader:
+          <pre>{
+  "keybinds": {
+    "model_favorite_toggle": "&lt;leader&gt;f",
+    "input_word_forward": "&lt;leader&gt;w",
+    "input_word_backward": "&lt;leader&gt;b"
+  }
+}</pre>
+        </li>
+      </ol>
+      <p>To debug what VS Code is doing with a keypress, run <b>Developer: Toggle Keyboard Shortcuts Troubleshooting</b> from the VS Code command palette.</p>
+    </section>
+
   </div>
 
   <footer>
     <span>OpenCode Keybinding Cheat Sheet &middot; Default keybinds, Linux / macOS edition</span>
-    <span>Version: 2026-07-04 &middot; OpenCode v1.17.13 &mdash; Source: <a href="https://opencode.ai/docs/keybinds">opencode.ai/docs/keybinds</a> &mdash; verify against your installed version</span>
+    <span>Version: 2026-07-05 &middot; OpenCode v1.17.13 &mdash; Source: <a href="https://opencode.ai/docs/keybinds">opencode.ai/docs/keybinds</a> &mdash; verify against your installed version</span>
     <span style="width:100%;margin-top:4px;font-size:10px;">&copy; 2026 Robert H. Engelhardt &middot; Apache 2.0 License &middot; Latest version: <a href="https://github.com/rheone/miscellaneous-agentic-tooling">https://github.com/rheone/miscellaneous-agentic-tooling</a></span>
   </footer>
 

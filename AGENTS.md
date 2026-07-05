@@ -1,63 +1,62 @@
 # AGENTS.md — miscellaneous-agentic-tooling
 
-Agentic AI skills for Home Assistant automation and Obsidian knowledge management, distributed as [OpenCode/Claude Code skills](https://github.com/rheone/miscellaneous-agentic-tooling).
+This repository ["miscellaneous-agentic-tooling"](https://github.com/rheone/miscellaneous-agentic-tooling) contains:
+
+- Agentic AI skills for
+  - Home Assistant
+  - Obsidian.md knowledge management
+- Agentic cheat sheets for OpenCode and Claude
+- Other miscellaneous related tooling
 
 ## Repository structure
 
+```structure
+.
+├── skills/
+│   ├── homeassistant-awtrix/    # SKILL.md + EXAMPLES.md + REFERENCE.md
+│   ├── homeassistant-pixoo64/   # SKILL.md + EXAMPLES.md + REFERENCE.md
+│   ├── obsidian-ics-sync/       # SKILL.md + scripts/sync_calendar.py
+│   └── obsidian-templater/      # SKILL.md + references/ (8 files) + scripts/ + examples/ + testing/TESTING.md
+├── cheatsheets/
+│   ├── claude/                  # Claude Code CLI + keybinding cheatsheets (html+md per platform)
+│   └── opencode/                # OpenCode CLI + keybinding cheatsheets (html+md per platform)
+├── .editorconfig
+├── .gitignore
+└── README.md
 ```
-skills/
-├── homeassistant-awtrix/    # SKILL.md + EXAMPLES.md + REFERENCE.md
-├── homeassistant-pixoo64/   # SKILL.md + EXAMPLES.md + REFERENCE.md
-├── obsidian-ics-sync/       # SKILL.md + scripts/sync_calendar.py
-└── obsidian-templater/      # SKILL.md + references/ + scripts/ + testing/TESTING.md
+
+## Skill conventions
+
 ```
-
-## Skills
-
-Skill should be structured as:
-
-```file tree
 my-skill/
-├── SKILL.md          # Required: metadata + instructions
-├── scripts/          # Optional: executable code
-├── references/       # Optional: documentation
+├── SKILL.md          # Required: agent-facing instructions + YAML frontmatter
+├── README.md         # Optional: user-facing documentation about the skill
+├── scripts/          # Optional: executable code (prefer cross-platform trio: pwsh + py + sh)
+├── references/       # Optional: reference docs split from SKILL.md when it exceeds ~150 lines
 ├── assets/           # Optional: templates, resources
-├── README.md         # User facing documentation about the skill
-└── ...               # Any additional files or directories
+└── examples/         # Optional: practical examples
 ```
 
-include appropriate yaml frontmatter:
+**Frontmatter** uses 3-space indent per `.editorconfig`. Real skills use these fields:
 
 ```yaml
 ---
-name: [skill-name]
-description: [What the skill does and when to use it]
-license: Apache 2.0
-compatibility: opencode
+name: homeassistant-awtrix
+description: >-
+  One- or two-sentence description of what the skill does and when to use it.
+  Also list key trigger phrases an agent should pick up on.
+license: Apache-2.0
+user-invocable: true
 metadata:
-  audience: [e.g., maintainers]
+  source: https://github.com/rheone/miscellaneous-agentic-tooling
+  author: Robert Engelhardt <rheone@gmail.com>
+  version: "1.0.2"
 ---
-```
-
-## Installation
-
-```bash
-# All skills
-npx skills add rheone/miscellaneous-agentic-tooling
-# Single skill
-npx skills add rheone/miscellaneous-agentic-tooling --skill homeassistant-awtrix
-# List/enable/disable
-npx skills list
-npx skills enable homeassistant-awtrix
-npx skills disable obsidian-ics-sync
 ```
 
 ## Conventions
 
-- **EditorConfig**: 3-space indent for `*.{json,jsonc,yml,yaml,md,ps1}`, 4-space for `*.py`, LF line endings, UTF-8
 - **License**: Apache-2.0
-- **Skill frontmatter**: `name`, `description`, `license: Apache-2.0`, `author`, `version`, optionally `user-invocable: true`
-- **No build/lint/CI tooling** — content-only repo. No package.json at root.
-- **Python**: `obsidian-ics-sync` requires Python 3.6+; `obsidian-templater/scripts/validate-template.py` also available
-- **Templater validation**: scripts in `skills/obsidian-templater/scripts/validate-template.{ps1,py,sh}` — each works independently
-- **Templater testing**: Node 18+ and Jest; see `skills/obsidian-templater/testing/TESTING.md`
+- **No build/lint/CI** — content-only repo. No `package.json` at root.
+- **Cheatsheets** in `cheatsheets/{claude,opencode}/` are generated as both `.html` and `.md` per tool per platform — keep in sync when updating.
+- **Scripts**: prefer cross-platform coverage (pwsh + py + sh).
