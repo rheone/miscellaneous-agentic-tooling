@@ -5,6 +5,7 @@ Miscellaneous Agentic AI tooling [Claude Code](https://docs.anthropic.com/en/doc
 - [Skills](#skills)
 - [Installation](#installation)
 - [Cheatsheets](#cheatsheets)
+- [Guides](#guides)
 
 ## Skills
 
@@ -62,3 +63,12 @@ npx skills disable obsidian-ics-sync
 | **OpenCode** | CLI | Windows | [HTML](cheatsheets/opencode/opencode-cli-windows.html) | [Markdown](cheatsheets/opencode/opencode-cli-windows.md) |
 | **OpenCode** | Keybindings | Linux/macOS | [HTML](cheatsheets/opencode/opencode-keybindings-linux-mac.html) | [Markdown](cheatsheets/opencode/opencode-keybindings-linux-mac.md) |
 | **OpenCode** | Keybindings | Windows | [HTML](cheatsheets/opencode/opencode-keybindings-windows.html) | [Markdown](cheatsheets/opencode/opencode-keybindings-windows.md) |
+
+## Guides
+
+Narrative, conceptual guides — slash commands, models, reasoning-effort levels, and sub-agent dispatch (parallel vs serial) — for developers new to agentic coding tools. Complements the terse Cheatsheets above rather than replacing them.
+
+| Tool | Guide | Description |
+|------|-------|-------------|
+| **Claude Code** | [`claude-code-guide.md`](cheatsheets/claude/claude-code-guide.md) | Slash commands (TUI vs UI, plan vs build), CLI args, models, `--effort` levels, sub-agent dispatch, and a Skills/Agents/Plugins/MCP/Hooks/LSP glossary |
+| **OpenCode** | [`opencode-guide.md`](cheatsheets/opencode/opencode-guide.md) | Slash commands, Plan/Build mode, CLI args, provider-agnostic models, reasoning variants, `@agent` sub-agent dispatch, and a Skills/Plugins/MCP/Hooks/LSP glossary |
