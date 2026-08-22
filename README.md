@@ -2,10 +2,13 @@
 
 Miscellaneous Agentic AI tooling [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview), [OpenCode](https://opencode.ai/), and other AI coding agents.
 
-- [Skills](#skills)
-- [Installation](#installation)
-- [Cheatsheets](#cheatsheets)
-- [Guides](#guides)
+- [Miscellaneous Agentic Tooling](#miscellaneous-agentic-tooling)
+  - [Skills](#skills)
+    - [Installation](#installation)
+    - [Manage installed skills](#manage-installed-skills)
+  - [Cheatsheets](#cheatsheets)
+  - [Guides](#guides)
+  - [References](#references)
 
 ## Skills
 
@@ -15,6 +18,8 @@ Miscellaneous Agentic AI tooling [Claude Code](https://docs.anthropic.com/en/doc
 | **Home Assistant**   | [`homeassistant-pixoo64`](skills/homeassistant-pixoo64)           | Control Divoom Pixoo 64 displays — 8 page types, push notifications          |
 | **Obsidian**         | [`obsidian-templater`](skills/obsidian-templater)                 | Create Obsidian templates with Templater syntax, validation, and testing     |
 | **Obsidian**         | [`obsidian-ics-sync`](skills/obsidian-ics-sync)                   | Sync ICS calendar events into Obsidian daily notes with wikilink matching    |
+| **Markdown**         | [`github-markdown`](skills/github-markdown)                       | Author GitHub Flavored Markdown — tables, code blocks, diagrams, math, alerts |
+
 
 ### Installation
 
@@ -32,6 +37,9 @@ npx skills add rheone/miscellaneous-agentic-tooling --skill homeassistant-awtrix
 
 # Obsidian skills
 npx skills add rheone/miscellaneous-agentic-tooling --skill obsidian-templater --skill obsidian-ics-sync
+
+# Markdown skills
+npx skills add rheone/miscellaneous-agentic-tooling --skill github-markdown
 ```
 
 Install from a local path:
@@ -72,3 +80,11 @@ Narrative, conceptual guides — slash commands, models, reasoning-effort levels
 |------|-------|-------------|
 | **Claude Code** | [`claude-code-guide.md`](cheatsheets/claude/claude-code-guide.md) | Slash commands (TUI vs UI, plan vs build), CLI args, models, `--effort` levels, sub-agent dispatch, and a Skills/Agents/Plugins/MCP/Hooks/LSP glossary |
 | **OpenCode** | [`opencode-guide.md`](cheatsheets/opencode/opencode-guide.md) | Slash commands, Plan/Build mode, CLI args, provider-agnostic models, reasoning variants, `@agent` sub-agent dispatch, and a Skills/Plugins/MCP/Hooks/LSP glossary |
+
+## References
+
+Deep-dive reference documentation for third-party agent skill ecosystems and related tooling.
+
+| Subject | Document | Description |
+|---------|----------|-------------|
+| **Matt Pocock Skills** | [`matt-pocock-skills-v1.2.3.md`](references/matt-pocock-skills-v1.2.3.md) | A reference & guide to Matt Pocock's [`mattpocock/skills`](https://github.com/mattpocock/skills) ecosystem (v1.2.3) — 25 agent skills for grilling, TDD, code review, triage, wayfinder, and codebase maintenance, with workflow diagrams |
