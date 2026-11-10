@@ -1,0 +1,33 @@
+# Header bar, title, wrapped body, footer time. Every position was found with
+# `pixoo.py suggest` and checked with `pixoo.py render examples/notification.yaml --fill 21:45`.
+action: divoom_pixoo.show_message
+target:
+  entity_id: sensor.divoom_pixoo_64_current_page  # find yours: ha_search "pixoo" (domain sensor)
+data:
+  duration: 15
+  page_data:
+    page_type: components
+    components:
+      - type: rectangle            # header bar, drawn first so text goes on top
+        position: [0, 0]
+        size: [64, 11]
+        color: darkslateblue
+        filled: true
+      - type: text
+        content: "Front door"
+        font: pixelifysans         # 7 px capitals, real lower case; ink rows 2..8
+        color: white
+        align: center
+        position: [31, 2]
+      - type: text
+        content: "Someone is at\nthe front door"
+        font: tiny5                # 5 px capitals; i-dots draw 1 row above y
+        color: white
+        align: center
+        position: [32, 24]
+      - type: text
+        content: "{{ now().strftime('%H:%M') }}"
+        font: pico_8               # 4 px per digit, so the time never moves sideways
+        color: gray
+        align: center
+        position: [32, 57]

@@ -1,0 +1,40 @@
+# Alarm page: a bell drawn with rectangles (examples/sprites/bell.txt via `pixoo.py sprite`),
+# the alarm time in the clock font and an optional title. Made for an alarm or timer alert.
+# The title slot holds about 9 characters of pixelifysans; longer titles need `wordwrap` or tiny5.
+# Check: pixoo.py render examples/alarm-bell.yaml --fill 16=07:30 --fill "17=Wake up"
+action: divoom_pixoo.show_message
+target:
+  entity_id: sensor.divoom_pixoo_64_current_page
+data:
+  duration: 60
+  page_data:
+    page_type: components
+    components:
+      - {type: rectangle, position: [30, 2], size: [4, 2], color: gold, filled: true}
+      - {type: rectangle, position: [28, 4], size: [8, 2], color: gold, filled: true}
+      - {type: rectangle, position: [26, 6], size: [12, 2], color: gold, filled: true}
+      - {type: rectangle, position: [24, 8], size: [16, 2], color: gold, filled: true}
+      - {type: rectangle, position: [24, 10], size: [4, 2], color: gold, filled: true}
+      - {type: rectangle, position: [28, 10], size: [4, 2], color: lightyellow, filled: true}
+      - {type: rectangle, position: [32, 10], size: [8, 2], color: gold, filled: true}
+      - {type: rectangle, position: [24, 12], size: [2, 2], color: gold, filled: true}
+      - {type: rectangle, position: [26, 12], size: [2, 2], color: lightyellow, filled: true}
+      - {type: rectangle, position: [28, 12], size: [12, 2], color: gold, filled: true}
+      - {type: rectangle, position: [24, 14], size: [16, 4], color: gold, filled: true}
+      - {type: rectangle, position: [22, 18], size: [20, 4], color: gold, filled: true}
+      - {type: rectangle, position: [20, 22], size: [24, 2], color: gold, filled: true}
+      - {type: rectangle, position: [18, 24], size: [28, 2], color: gold, filled: true}
+      - {type: rectangle, position: [28, 28], size: [8, 2], color: lightyellow, filled: true}
+      - {type: rectangle, position: [30, 30], size: [4, 2], color: lightyellow, filled: true}
+      - type: text
+        content: "{{ alarm_time }}"          # e.g. 07:30; the clock font has digits and ':' only
+        font: clock
+        color: white
+        align: center
+        position: [32, 39]
+      - type: text
+        content: "{{ alarm_title | default('Alarm') }}"
+        font: pixelifysans
+        color: orange
+        align: center
+        position: [31, 54]

@@ -13,8 +13,9 @@ This repository ["miscellaneous-agentic-tooling"](https://github.com/rheone/misc
 ```structure
 .
 ├── skills/
-│   ├── homeassistant-awtrix/    # SKILL.md + EXAMPLES.md + REFERENCE.md
-│   ├── homeassistant-pixoo64/   # SKILL.md + EXAMPLES.md + REFERENCE.md
+│   ├── homeassistant-awtrix/    # AWTRIX 3: SKILL.md + EXAMPLES.md + REFERENCE.md
+│   ├── homeassistant-awtrix-ng/ # AWTRIX NG: SKILL.md + NOTICE.md + references/ (13 files); PolyForm Noncommercial
+│   ├── homeassistant-pixoo64/   # SKILL.md + README.md + references/ + examples/ + tools/ (Python, with tests)
 │   ├── obsidian-ics-sync/       # SKILL.md + scripts/sync_calendar.py
 │   └── obsidian-templater/      # SKILL.md + references/ (8 files) + scripts/ + examples/ + testing/TESTING.md
 ├── cheatsheets/
@@ -56,7 +57,7 @@ metadata:
 
 ## Conventions
 
-- **License**: Apache-2.0
+- **License**: Apache-2.0, except `skills/homeassistant-awtrix-ng/`, which is PolyForm-Noncommercial-1.0.0 (see its NOTICE.md). Skills that bundle third-party files keep those licenses next to the files.
 - **No build/lint/CI** — content-only repo. No `package.json` at root.
 - **Cheatsheets** in `cheatsheets/{claude,opencode}/` are generated as both `.html` and `.md` per tool per platform — keep in sync when updating.
 - **Scripts**: prefer cross-platform coverage (pwsh + py + sh).

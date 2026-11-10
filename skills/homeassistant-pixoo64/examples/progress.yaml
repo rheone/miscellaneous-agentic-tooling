@@ -1,0 +1,16 @@
+# Built-in progress_bar page. `progress` goes through int(): 45.5 becomes 45, but 'unavailable'
+# raises ValueError and the page is not drawn, so it is wrapped in `| int(0)`.
+# header and footer use five_pix at fixed x (header_offset / footer_offset), about 13 characters.
+action: divoom_pixoo.show_message
+target:
+  entity_id: sensor.divoom_pixoo_64_current_page
+data:
+  duration: 15
+  page_data:
+    page_type: progress_bar
+    header: "3D print"
+    progress: "{{ states('sensor.printer_progress') | float(0) | round(0) | int(0) }}"
+    footer: "{{ states('sensor.printer_task_name')[:12] }}"
+    time_end: "{{ (now() + timedelta(minutes=states('sensor.printer_remaining_time') | int(0))).strftime('%H:%M') }}"
+    progress_bar_color: lime
+    bg_color: [20, 20, 60]

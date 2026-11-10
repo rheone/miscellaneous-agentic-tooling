@@ -1,0 +1,54 @@
+# Big outdoor temperature with one decimal, -40.0 to 99.9. Script sequence (paste into a script or automation).
+# pix24 has no minus sign and its digits differ in width, so:
+#  - the number is right-aligned at x=52: it grows to the left and the unit never moves;
+#  - the minus is a 6x3 rectangle 2 px left of the number. Its x comes from the text width,
+#    computed with the snippet from `pixoo.py jinja --font pix24 --chars "0123456789.°" --var t`;
+#    it is black (invisible) when the value is not negative.
+# Check one run per worst case (minus x = 52 - width - 8, as the template computes):
+#   widest:   pixoo.py render examples/sensor-value.yaml --fill 2=28.8° --fill 1.position=2,24 --fill 4=88
+#   narrow:   pixoo.py render examples/sensor-value.yaml --fill 2=1.1° --fill 1.position=19,24 --fill 4=88
+- variables:
+    temp: "{{ states('sensor.outdoor_temperature') | float(0) | round(1) }}"   # rounded first, so -0.04 shows 0.0 with no minus
+    t: "{{ '%.1f' | format(temp | abs) }}°"        # stays text because of the °, so 20.0 keeps its zero
+    minus_x: >-
+      {% set adv = {".": 4, "0": 10, "1": 8, "°": 6} %}
+      {% set ns = namespace(w=0) %}
+      {% for c in t %}{% set ns.w = ns.w + adv.get(c, 11) %}{% endfor %}
+      {{ 52 - (ns.w - 1) - 8 }}
+- action: divoom_pixoo.show_message
+  target:
+    entity_id: sensor.divoom_pixoo_64_current_page
+  data:
+    duration: 20
+    page_data:
+      page_type: components
+      components:
+        - type: text
+          content: "Outside"
+          font: tiny5
+          color: lightgray
+          align: center
+          position: [32, 3]
+        - type: rectangle                 # minus sign, on the middle rows of the 24 px digits
+          position: ["{{ minus_x }}", 24]
+          size: [6, 3]
+          color: "{{ 'white' if temp < 0 else 'black' }}"
+          filled: true
+        - type: text
+          content: "{{ t }}"
+          font: pix24
+          color: white
+          align: right
+          position: [52, 14]              # ink ends at column 51 for any value
+        - type: text
+          content: "C"
+          font: tiny5
+          color: white
+          align: left
+          position: [54, 15]
+        - type: text
+          content: "Humidity {{ states('sensor.outdoor_humidity') | int(0) }}%"
+          font: five_pix
+          color: lightskyblue
+          align: center
+          position: [32, 50]

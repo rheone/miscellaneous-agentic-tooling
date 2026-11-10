@@ -1,0 +1,30 @@
+# A 32 x 32 icon with a label under it. `position` is the icon's top-left corner (images take no `align`):
+# (64 - 32) / 2 = 16. The label sits on a black band, so it stays readable whatever the image looks like.
+# Keep your images in /config/www (an integration update replaces its own img/ folder).
+# Check: pixoo.py render examples/image-with-label.yaml --fill "2=Feed the cats"
+# (render reports image-not-found until the file exists in your /config/www)
+action: divoom_pixoo.show_message
+target:
+  entity_id: sensor.divoom_pixoo_64_current_page
+data:
+  duration: 15
+  page_data:
+    page_type: components
+    components:
+      - type: image
+        image_path: /config/www/pixoo/cat_32x32.png
+        position: [16, 6]
+        width: 32
+        height: 32
+        resample_mode: nearest     # keeps pixel art sharp
+      - type: rectangle            # backdrop band for the label
+        position: [0, 44]
+        size: [64, 13]
+        color: black
+        filled: true
+      - type: text
+        content: "{{ message | default('Feed the cats') }}"
+        font: tiny5
+        color: white
+        align: center
+        position: [32, 47]
