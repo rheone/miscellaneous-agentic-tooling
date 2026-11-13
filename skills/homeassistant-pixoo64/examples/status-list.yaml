@@ -1,0 +1,50 @@
+# Three status rows: a colored square and a label. Labels are left-aligned at one x
+# so they line up; the square's top row equals the text y, so both share the cap line.
+# Check: pixoo.py render examples/status-list.yaml
+action: divoom_pixoo.show_message
+target:
+  entity_id: sensor.divoom_pixoo_64_current_page
+data:
+  duration: 20
+  page_data:
+    page_type: components
+    components:
+      - type: text
+        content: "Doors"
+        font: pixelifysans
+        color: white
+        align: center
+        position: [31, 2]
+      - type: rectangle
+        position: [4, 17]
+        size: [5, 5]
+        color: "{{ 'red' if is_state('binary_sensor.front_door', 'on') else 'lime' }}"
+        filled: true
+      - type: text
+        content: "Front"
+        font: tiny5
+        color: white
+        align: left
+        position: [12, 17]
+      - type: rectangle
+        position: [4, 30]
+        size: [5, 5]
+        color: "{{ 'red' if is_state('binary_sensor.back_door', 'on') else 'lime' }}"
+        filled: true
+      - type: text
+        content: "Back"
+        font: tiny5
+        color: white
+        align: left
+        position: [12, 30]
+      - type: rectangle
+        position: [4, 43]
+        size: [5, 5]
+        color: "{{ 'red' if is_state('cover.garage_door', 'open') else 'lime' }}"
+        filled: true
+      - type: text
+        content: "Garage"
+        font: tiny5
+        color: white
+        align: left
+        position: [12, 43]

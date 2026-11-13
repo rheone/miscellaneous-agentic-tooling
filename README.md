@@ -5,6 +5,8 @@ Miscellaneous Agentic AI tooling [Claude Code](https://docs.anthropic.com/en/doc
 - [Miscellaneous Agentic Tooling](#miscellaneous-agentic-tooling)
   - [Skills](#skills)
     - [Installation](#installation)
+    - [Licenses](#licenses)
+    - [Using AWTRIX 3 or AWTRIX NG](#using-awtrix-3-or-awtrix-ng)
     - [Manage installed skills](#manage-installed-skills)
   - [Cheatsheets](#cheatsheets)
   - [Guides](#guides)
@@ -15,7 +17,8 @@ Miscellaneous Agentic AI tooling [Claude Code](https://docs.anthropic.com/en/doc
 | Category             | Skill                                                             | Description                                                                  |
 | -------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | **Home Assistant**   | [`homeassistant-awtrix`](skills/homeassistant-awtrix)             | Control AWTRIX 3 on Ulanzi TC001 pixel clocks — notifications, apps, sounds  |
-| **Home Assistant**   | [`homeassistant-pixoo64`](skills/homeassistant-pixoo64)           | Control Divoom Pixoo 64 displays — 8 page types, push notifications          |
+| **Home Assistant**   | [`homeassistant-awtrix-ng`](skills/homeassistant-awtrix-ng)       | Control AWTRIX NG (Blueforcer) clocks over MQTT — notifications, pushed apps, icons, sounds, Berry scripts. Noncommercial license |
+| **Home Assistant**   | [`homeassistant-pixoo64`](skills/homeassistant-pixoo64)           | Design Divoom Pixoo 64 pages with the `divoom_pixoo` 1.24.0 integration — font and glyph checks, PNG previews, tested example pages |
 | **Obsidian**         | [`obsidian-templater`](skills/obsidian-templater)                 | Create Obsidian templates with Templater syntax, validation, and testing     |
 | **Obsidian**         | [`obsidian-ics-sync`](skills/obsidian-ics-sync)                   | Sync ICS calendar events into Obsidian daily notes with wikilink matching    |
 | **Markdown**         | [`github-markdown`](skills/github-markdown)                       | Author GitHub Flavored Markdown — tables, code blocks, diagrams, math, alerts |
@@ -33,7 +36,7 @@ Install specific skills:
 
 ```bash
 # Home Assistant skills
-npx skills add rheone/miscellaneous-agentic-tooling --skill homeassistant-awtrix --skill homeassistant-pixoo64
+npx skills add rheone/miscellaneous-agentic-tooling --skill homeassistant-awtrix --skill homeassistant-awtrix-ng --skill homeassistant-pixoo64
 
 # Obsidian skills
 npx skills add rheone/miscellaneous-agentic-tooling --skill obsidian-templater --skill obsidian-ics-sync
@@ -48,6 +51,14 @@ Install from a local path:
 npx skills add /path/to/misc-agentic-tooling
 ```
 
+### Licenses
+
+Most of this repository is Apache-2.0. [`homeassistant-awtrix-ng`](skills/homeassistant-awtrix-ng) is licensed [PolyForm Noncommercial 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0), the same license as AWTRIX NG, and is for noncommercial use only. See its [NOTICE.md](skills/homeassistant-awtrix-ng/NOTICE.md). [`homeassistant-pixoo64`](skills/homeassistant-pixoo64) bundles a copy of the MIT-licensed `divoom_pixoo` font code and SIL OFL fonts, with their licenses next to them.
+
+### Using AWTRIX 3 or AWTRIX NG
+
+The two firmwares share no API. Use `homeassistant-awtrix` for AWTRIX 3 and `homeassistant-awtrix-ng` for AWTRIX NG.
+
 ### Manage installed skills
 
 ```bash
@@ -55,7 +66,7 @@ npx skills add /path/to/misc-agentic-tooling
 npx skills list
 
 # Enable / disable selectively
-npx skills enable homeassistant-awtrix homeassistant-pixoo64
+npx skills enable homeassistant-awtrix homeassistant-awtrix-ng homeassistant-pixoo64
 npx skills disable obsidian-ics-sync
 ```
 

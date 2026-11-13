@@ -1,0 +1,36 @@
+# Pages the device draws itself. The integration only sends a command, so `render` cannot preview them.
+# Script sequence: each step is one example; use one at a time.
+- alias: Clock face (ids come from the Divoom app's clock list)
+  action: divoom_pixoo.show_message
+  target:
+    entity_id: sensor.divoom_pixoo_64_current_page
+  data:
+    duration: 30
+    page_data:
+      page_type: clock
+      id: 182
+- alias: Custom channel page 1 (id 0, 1 or 2)
+  action: divoom_pixoo.show_message
+  target:
+    entity_id: sensor.divoom_pixoo_64_current_page
+  data:
+    page_data:
+      page_type: channel
+      id: 0
+- alias: Music visualizer (spelled visualizer)
+  action: divoom_pixoo.show_message
+  target:
+    entity_id: sensor.divoom_pixoo_64_current_page
+  data:
+    page_data:
+      page_type: visualizer
+      id: 2
+- alias: Animated GIF; the Pixoo downloads it itself, so the URL must be reachable from the device
+  action: divoom_pixoo.show_message
+  target:
+    entity_id: sensor.divoom_pixoo_64_current_page
+  data:
+    duration: 20
+    page_data:
+      page_type: gif
+      gif_url: "http://homeassistant.local:8123/local/pixoo/rain_64x64.gif"

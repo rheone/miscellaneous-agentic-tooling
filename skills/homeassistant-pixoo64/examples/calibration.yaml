@@ -1,0 +1,27 @@
+# Device calibration page: compare the device with `pixoo.py render examples/calibration.yaml --png cal.png`.
+# Show it after an integration update or when a page looks different from its preview.
+# Checked on a Pixoo 64 on 2026-11-08 (photos matched the render in every position):
+#  - frame complete on all four edges; cyan gicko "88" reaches the frame, yellow pico_8 "Ab88" ends 2 px short (#162)
+#  - Tiny5: the É accent 3 rows above y, i/j dots 1 row above; g/y descenders in Tiny5, PixelifySans, Press Start 2P
+#  - green pico_8 "abc" is small capitals; violet five_pix "abc" looks like capitals (copies of the capitals)
+#  - top-left "OK" with a dim shadow 1 px down-right (overlap on purpose: lint reports it as an effect)
+# Colors looked cooler in the photos than the names suggest; that was not verified (camera white balance).
+# Presence-triggered pages can replace it while you walk up to look: pause them while you test.
+action: divoom_pixoo.show_message
+target:
+  entity_id: sensor.divoom_pixoo_64_current_page
+data:
+  duration: 180
+  page_data:
+    page_type: components
+    components:
+      - {type: rectangle, position: [0, 0], size: [64, 64], color: gray, filled: false}   # frame: every corner and edge
+      - {type: text, content: "OK", font: gicko, color: dimgray, align: left, position: [5, 6]}   # shadow, 1 px down-right
+      - {type: text, content: "OK", font: gicko, color: white, align: left, position: [4, 5]}
+      - {type: text, content: "Ab88", font: pico_8, color: yellow, align: right, position: [63, 2]}  # ink should end at col 61
+      - {type: text, content: "88", font: gicko, color: cyan, align: right, position: [63, 9]}       # ink should end at col 62
+      - {type: text, content: "jig Éy", font: tiny5, color: white, align: center, position: [32, 25]} # É accent above y, g/y below
+      - {type: text, content: "Hgy", font: pixelifysans, color: orange, align: left, position: [2, 33]}
+      - {type: text, content: "AB\ngy", font: pressstart2p, color: deepskyblue, align: left, position: [40, 33]}
+      - {type: text, content: "abc ABC", font: pico_8, color: lime, align: left, position: [2, 51]}    # small caps vs caps
+      - {type: text, content: "abc ABC", font: five_pix, color: violet, align: left, position: [2, 57]}
